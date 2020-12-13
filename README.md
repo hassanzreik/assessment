@@ -9,6 +9,7 @@ i used environment variables
 https://documenter.getpostman.com/view/112747/TVsoGVu5
 
 ## Note
+dumped db in database/dump
 
 For operators i added 3 in operators table
 - first works only for LB mobile numbers
