@@ -35,7 +35,7 @@ Route::prefix('user')->group(function () {
 
 Route::prefix('server')->group(function () {
 
-	//Using Middleware to check server token is valid
+	//Using ServerMiddleware to check server token is valid
 	Route::group(['middleware' => ['server-auth']], function () {
 		Route::get('subscribeCallback/{token}', [Server\SubscribeController::class, 'subscribeCallback']);
 		Route::get('unsubscribeCallback/{token}', [Server\SubscribeController::class, 'unsubscribeCallback']);

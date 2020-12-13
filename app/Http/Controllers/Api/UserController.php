@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Helpers\Helper;
-use App\Helpers\JWTHelper;
 use App\Http\Controllers\ApiController;
 use App\Http\Resources\SubscriptionResource;
 use App\Http\Resources\UserResource;
-use App\Models\ApiLog;
 use App\Models\Operator;
 use App\Models\Product;
 use App\Models\Subscription;
@@ -15,10 +13,8 @@ use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
-use PHPUnit\TextUI\Help;
 
 class UserController extends ApiController
 {
@@ -124,6 +120,7 @@ class UserController extends ApiController
 
 			$token = Helper::generateJWTToken($subscription);
 
+			// request logs
 			$apiLog = Helper::log(url($operator->subscribe_url)."/$token", "GET");
 
 			$response = Http::withToken($token)
@@ -173,6 +170,7 @@ class UserController extends ApiController
 
 			$token = Helper::generateJWTToken($subscription);
 
+			// request logs
 			$apiLog = Helper::log(url($subscription->operator->unsubscribe_url)."/$token", "GET");
 
 			$response = Http::withToken($token)
